@@ -1,7 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-  name='statistics',
-  version='0.0.1',
-  packages=find_packages(),
- )
+  name="nutstats",
+  version="0.0.1",
+  author="Fazus Kazoo",
+  author_email="fbxmuz@gmail.com",
+  packages=find_packages()
+)
+
+
