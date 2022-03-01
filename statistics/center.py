@@ -10,11 +10,3 @@ def median(l):
     else:
         return  (l[ int(len(l) /2) -1] + l[ int(len(l) /2)]) /2
 
-
-l = [1,1,2,2]
-m = mean(l)
-print(m)
-
-print(midrange(l))
-
-print(median(l))
