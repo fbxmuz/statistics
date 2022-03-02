@@ -1,5 +1,5 @@
 """
- Chapter 3 - Inferential Statistics
+ Chapter 2 - Probability
 
 """
 def factorial(n):
@@ -38,9 +38,7 @@ def combination(n,k):
     else:
         raise ValueError("n may not be less than k")
 
-print(permutation(n=8,k=2))
 
-print(combination(n=8, k=2))
 
 """
 The probability of a single event, E, is 0 <= P(E) <= 1
@@ -50,16 +48,19 @@ The sample space S are all the possible outcomes of a trial
 P(E) and it's complement P(~E),  P(E) + P(~E) == 1
 A corollary, P(~E) == 1 - P(E)
 """
+def isAProbability(n):
+    return n >= 0 and n <= 1
 
 def complement(PE):
-    if PE >= 0 and PE <= 1:
+    if isAProbability(PE):
         return 1 - PE
     else:
         return ValueError("0 <= P(E) <= 1")
 
 def excusive_union(PE, PF) :
+    # pf. 32
     """P (E ∪ F) = P(E) + P(F)"""
-    if PE + PF >=0 and PE +PF <= 1:
+    if isAProbability(PE + PF):
         return PE + PF
     else:
         raise ValueError("0 <= P(E) + P(F) <= 1")
@@ -67,9 +68,30 @@ def excusive_union(PE, PF) :
 
 def non_exclusive_union(PE, PF):
     """P(E ∪ F) = P(E) + P(F) − P(E ∩ F)"""
-    if PE + PF >= 0 and PE + PF <= 1:
+    if isAProbability(PE + PF):
         return PE + PF - excusive_union(PE, PF)
     else:
         raise ValueError("0 <= P(E) + P(F) <= 1")
 
-# intersection
+def intersection_independent(PE, PF):
+    if isAProbability(PE) and isAProbability(PF):
+        return PE * PF
+    else:
+        raise ValueError("PE and PF must be between 0 and 1")
+
+def intersection(PE, PF):
+    if isAProbability(PE) and isAProbability(PF):
+        return PE * PF
+    else:
+        raise ValueError("PE and PF must be between 0 and 1")
+
+def draw(number_of_matches, number_of_cards):
+    return number_of_matches/number_of_cards
+# draw clubs from a card deck
+clubs = draw(26,52)
+print(clubs)
+# draw clubs twice
+clubs_twice = draw(25,51)
+
+print(intersection(clubs, clubs_twice))
+
